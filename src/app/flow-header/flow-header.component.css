@@ -1,0 +1,31 @@
+@keyframes img2rightani
+{
+	from
+	{
+		right:90%;
+		-webkit-transform: rotateY(150deg) scale3d(0.5,0.5,0.5) rotate3d(1,0,0,60deg);
+		transform: rotateY(150deg) scale3d(0.5,0.5,0.5) rotate3d(1,0,0,60deg);
+	}
+	to
+	{
+		right:9px;
+		-webkit-transform: rotateY(0deg) scale3d(1,1,1) rotate3d(0,0,0,0deg);
+		transform: rotateY(0deg) scale3d(1,1,1) rotate3d(0,0,0,0deg);
+	}
+}
+
+h1
+{
+    text-align: center;
+
+    animation-name: img2rightani;
+    animation-delay: 0.09s;
+    animation-duration: 2s;
+	animation-timing-function: ease-out;
+	transform-style: preserve-3d;
+	transform-origin: right top;
+	perspective: 800;
+	-webkit-perspective: 800;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition: -webkit-transform 1s;    
+}

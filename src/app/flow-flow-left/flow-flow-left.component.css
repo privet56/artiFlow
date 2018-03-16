@@ -1,0 +1,34 @@
+.lp
+{
+    background-image: url("assets/border.vert.2.png");
+    background-repeat: repeat-y;
+    background-color: transparent;
+    background-position: center;
+    background-size: 100%;
+    height: 100%;
+    width:100%;
+}
+.lp2
+{
+    overflow: hidden;
+    margin-left: 19px;
+    height: 100%;
+    width:100%;    
+}
+.lph1
+{
+    transform: rotate(-45deg) translate(-36px, -99px);
+    background-color: #d2b48c;
+    transform-origin: 100% 0;
+    width: 200px;
+    height: 33px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top:9px;
+}
+.lph1network
+{
+    background-color: transparent;
+    height: 100%;
+    width:100%;
+}

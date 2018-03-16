@@ -3,12 +3,52 @@
 <head>
   <meta charset="utf-8">
   <title>Flow</title>
-  <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root>Loading...</app-root>
+  <app-root>
+    <div style="text-align:center;padding-top:99px;">
+      <br />
+      <br />
+      <br />
+      <style>
+        .wait
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            margin:-250px 0 0 -250px;/*50% of width */
+            -webkit-animation:spin 2s linear infinite;
+            -moz-animation:spin 2s linear infinite;
+            animation:spin 2s linear infinite;
+        }
+        @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+        @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+      </style>
+      <img src="assets/wait-7.gif" class="wait" />
+    </div>
+  </app-root>
+
+  <link href='https://fonts.googleapis.com/css?family=Dancing+Script:700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two' rel='stylesheet' type='text/css'>
+  <style>
+    h1 {
+      font-family: 'Shadows Into Light Two', cursive;
+    }
+    h2, h3, h4, h5, h6, a {
+      
+      font-family: 'Dancing Script', cursive;
+    }
+    body {
+      
+      font-family: 'Courier New', cursive;
+    }    
+  </style>
+  
 </body>
 </html>

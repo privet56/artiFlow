@@ -1,1 +1,81 @@
-/* You can add global styles to this file, and also import other style files */
+html, body, .surrounder
+{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+.surrounder
+{
+    display: flex;
+    flex-direction: column;
+}
+app-flow-header
+{
+    height: 75px;
+    background: linear-gradient(to right, white, #fcfbef);
+}
+app-flow-main
+{
+    flex: auto;
+    /*background: radial-gradient(#eaf1f7, #eaf1f7, white);*/
+    background: linear-gradient(to left, white, #fcfbef);
+}
+app-flow-footer
+{
+    height: 35px;
+    background: linear-gradient(to right, white, #fcfbef);
+}
+.main-flow-main
+{
+    min-height: 199px;
+    flex:auto;
+    /*background: radial-gradient(#eaf1f7, #eaf1f7, white);*/
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+.main-flow-main-inner
+{
+    min-height: 199px;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+.main-flow-left
+{
+    /* background: linear-gradient(to left, white, #e1e8f4);*/
+    min-height: 191px;
+    align-self: center;
+    flex:55 100;
+
+    width:50%;
+    flex-grow:100;
+    height:99%;
+}
+.main-flow-mid
+{
+    background-color:red;
+    min-height: 191px;
+    align-self: center;
+    flex:5 100;
+    width:5%;
+    height:99%;
+}
+.main-flow-right
+{
+    background: linear-gradient(to right, white, #e1e8f4);    
+    min-height: 191px;
+    align-self: center;
+    flex:45 100;
+
+    width:50%;
+    flex-grow:100;
+    height:99%;
+}
