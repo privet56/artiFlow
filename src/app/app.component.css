@@ -13,12 +13,11 @@
 .bordervert
 {
     border-width: 0 20px 0 20px;
-    /*border-style: solid;*/
-    border-image: url(assets/border.vert.2.png) 50 0 50 0 repeat;
-    -webkit-border-image: url(assets/border.vert.2.png) 50 0 50 0 repeat;
-    -moz-border-image: url(assets/border.vert.2.png) 50 0 50 0 repeat;
-    border-image-slice: 50 0 50 0 fill;
-    border-image-width: 20 0 20 0;
+    background-image: url("assets/border.vert.slim.png");
+    background-repeat: repeat-y;
+    background-color: transparent;
+    background-position: center;
+    background-size: 100%;
     width: 25px;
     height: 100%;
 }

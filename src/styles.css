@@ -53,7 +53,7 @@ app-flow-footer
     /* background: linear-gradient(to left, white, #e1e8f4);*/
     min-height: 191px;
     align-self: center;
-    flex:55 100;
+    flex:50 100;
 
     width:50%;
     flex-grow:100;

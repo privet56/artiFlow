@@ -10,6 +10,7 @@ import { FlowFlowLeftComponent } from './flow-flow-left/flow-flow-left.component
 import { FlowFlowRightComponent } from './flow-flow-right/flow-flow-right.component';
 
 import { DataService } from './services/data.service';
+import { CfgService } from './services/cfg.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { DataService } from './services/data.service';
     FormsModule,
     HttpModule
   ],
-  providers: [DataService],
+  providers: [DataService, CfgService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

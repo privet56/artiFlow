@@ -1,10 +1,10 @@
 .lp
-{
+{   /*
     background-image: url("assets/border.vert.2.png");
     background-repeat: repeat-y;
     background-color: transparent;
     background-position: center;
-    background-size: 100%;
+    background-size: 100%;*/
     height: 100%;
     width:100%;
 }
