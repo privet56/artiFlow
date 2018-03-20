@@ -91,7 +91,7 @@ export class CfgService
 
 
       manipulation: {
-        enabled: false,
+        enabled: false,                       //if true, edit/add node functions are displayed
         initiallyActive: true,
         addNode: true,
         addEdge: true,

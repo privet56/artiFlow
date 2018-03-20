@@ -34,7 +34,9 @@ export class FlowFlowLeftComponent implements OnInit, AfterViewInit
     this.network            = new vis.Network(container, data, options);
 
     //container.addEventListener('mouseover', this.onMouseover);
-    this.network.on("hoverNode", this.onMouseover);
+    var that = this;
+    this.network.on("hoverNode", function(event){that.onMouseover(event, true);});
+    this.network.on("blurNode", function(event){that.onMouseover(event, false);});
     this.network.on("showPopup", function(params) {
       this.showPopup(params);
     });
@@ -113,9 +115,9 @@ export class FlowFlowLeftComponent implements OnInit, AfterViewInit
             }
           });*/
   }
-  public onMouseover(event)
+  public onMouseover(event:any, over:boolean)
   {
-    console.log("onMouseover");
+    console.log("onMouseover:('"+over+"')");
     //var properties =  this.network.getEventProperties(event);
     // properties contains things like node id, group, x, y, time, etc.
     //console.log('mouseover properties:', properties);
