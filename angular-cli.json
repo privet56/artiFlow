@@ -22,7 +22,8 @@
         "styles.css"
       ],
       "scripts": [
-        "../node_modules/vis/dist/vis.min.js"
+        "../node_modules/vis/dist/vis.min.js",
+        "assets/vis.animateTraffic.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

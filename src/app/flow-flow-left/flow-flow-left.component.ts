@@ -4,6 +4,7 @@ import { Network, DataSet, Node, Edge, IdType } from 'vis';
 import { DataService } from '../services/data.service';
 import { CfgService } from '../services/cfg.service';
 import * as vis from 'vis';
+declare var $visNetworkAnimator : any;
 //declare var vis: any;   //this is the greenhorn version :-)
 
 @Component({
@@ -55,7 +56,62 @@ export class FlowFlowLeftComponent implements OnInit, AfterViewInit
       this.network.focus(1, o);
       this.network.selectNodes([1], true);
 
+      { /*
+        var head = document.getElementsByTagName('head').item(0);
+        var script = document.createElement('script');
+        script.setAttribute('type', 'text/javascript');
+        script.setAttribute('src', 'assets/vis.animateTraffic.js');
+        let that = this;
+        script.onload = function() {
+          that.onVisAnimateLoaded();
+        };
+        head.appendChild(script);*/
+        this.onVisAnimateLoaded();
+      }
+
     }, 1333);
+  }
+  public onVisAnimateLoaded() : void
+  {
+    $visNetworkAnimator.init(this.network);
+    this.ani();
+  }
+  public ani()
+  {
+    var that = this;
+      this.network["animateTraffic"]([
+
+             {edge:1, trafficSize:5, isBackward: false},
+             {edge:2, trafficSize:5, isBackward: false}
+
+         ],null,null,null, function(){ that.ani(); });
+
+         /*
+         var that = this;
+         let currentRadius = 3;
+
+         this.network.on("beforeDrawing", function(ctx) {
+          //if (animateRadius) {
+            var inode;
+            var nodePosition = that.network.getPositions();
+
+            let nodes = that.network["body"].nodes;
+            
+            var arrayLength = nodes.length;
+
+            for (inode = 0; inode < arrayLength; inode++) {
+
+              alert(1);
+              var colorCircle = 'rgba(0, 255, 0, 0.8)';
+              var colorBorder = 'rgba(0, 255, 0, 0.2)';
+              ctx.strokeStyle = colorCircle;
+              ctx.fillStyle = colorBorder;
+              var radius = Math.abs(50 * Math.sin(currentRadius + inode / 50.0));
+              ctx.circle(nodePosition[nodes[inode].id].x, nodePosition[nodes[inode].id].y, radius);
+              ctx.fill();
+              ctx.stroke();
+            }
+          });*/
   }
   public onMouseover(event)
   {
