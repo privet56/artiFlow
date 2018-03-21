@@ -20,5 +20,5 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ### Client:
 ./node_modules/.bin/ng build --prod --target=production --environment=prod --sourcemap=false --base-href= hashlocation true
 
-### GO Server:
+### Go Server:
 go build .\server\app\flowserver.go

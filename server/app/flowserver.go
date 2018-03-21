@@ -5,12 +5,27 @@ import (
 	"net/http"
 )
 
-func handler(writer http.ResponseWriter, request *http.Request) {
-	fmt.Fprintf(writer, "Hello World, %s!", request.URL.Path[1:])
+func api(writer http.ResponseWriter, request *http.Request) {
+	fmt.Fprintf(writer, "{ HelloWorld:'%s' }", request.URL.Path[1:])
 }
 
 func main() {
-	http.HandleFunc("/", handler)
+
+	port := "7179" //TODO: check for accessibility
 	//GO = 71 & 79
-	http.ListenAndServe(":7179", nil)
+
+	//http.HandleFunc("/", handler)
+	//http.ListenAndServe(":"+port, nil)
+
+	mux := http.NewServeMux()
+	files := http.FileServer(http.Dir("../flow-build"))
+	mux.Handle("/", files) //http.StripPrefix("/static/", files)
+
+	mux.HandleFunc("/api", api)
+
+	server := &http.Server{
+		Addr:    "0.0.0.0:" + port,
+		Handler: mux,
+	}
+	server.ListenAndServe()
 }
