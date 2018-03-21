@@ -21,7 +21,7 @@ export class DataService
       {id: 5,  shape: 'circularImage', label: "Browser"   , image: DIR + 'browser1.gif', group:'myGroup'},
       {id: 6,  shape: 'circularImage', label: "Artifactory",image: DIR + 'artifactory.png', group:'myGroup'}
     ];
-    if(!supplier)
+    if(!supplier/*customer*/)
     {
       nodes.push({id: 7,  shape: 'circularImage', label: "Wildfly", image: DIR + 'wildfly1.png', group:'myGroup'});
       nodes.push({id: 8,  shape: 'circularImage', label: "Browser", image: DIR + 'browser1.gif', group:'myGroup'});
