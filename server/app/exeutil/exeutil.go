@@ -6,7 +6,9 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strconv"
 	"strings"
 )
@@ -125,7 +127,7 @@ func GetCFG(cfgEntryName string, defaultCfgEntryValue string) (cfgEntryValue str
 		return
 	}
 
-	/*
+	/*	//TODO: check if this implementation is better for supporting native numbers...
 		file, err := os.Open(getCFGFN(getExeFNWithoutExt()))
 		if err != nil {
 			log.Fatalln("Cannot open config file", err)
@@ -149,4 +151,23 @@ func GetCFG(cfgEntryName string, defaultCfgEntryValue string) (cfgEntryValue str
 
 	cfgEntryValue = defaultCfgEntryValue
 	return cfgEntryValue
+}
+
+//OpenBrowser function
+func OpenBrowser(url string) {
+	var err error
+
+	switch runtime.GOOS {
+	case "linux":
+		err = exec.Command("xdg-open", url).Start()
+	case "windows":
+		err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
+	case "darwin":
+		err = exec.Command("open", url).Start()
+	default:
+		err = fmt.Errorf("unsupported platform")
+	}
+	if err != nil {
+		log.Fatal(err)
+	}
 }

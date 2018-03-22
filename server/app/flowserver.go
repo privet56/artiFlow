@@ -49,5 +49,6 @@ func main() {
 	}
 
 	exeutil.Loginf("starting on port:" + port + " with staticDir:'" + staticDir + "'")
+	exeutil.OpenBrowser("http://localhost:" + port + "/")
 	server.ListenAndServe()
 }
