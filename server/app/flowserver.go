@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"./exeutil"
 	"./restapi"
 )
 
@@ -19,7 +20,7 @@ func (h *ApiHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 */
 func main() {
 
-	port := "7179" //TODO: check for accessibility
+	port := exeutil.GetCFG("7179", "7179") //TODO: check for accessibility
 	//GO = 71 & 79
 
 	//basic routing
@@ -32,15 +33,21 @@ func main() {
 	//mux.HandleFunc("/api", api)
 
 	//route by struct
-	api := restapi.Api{} //TODO: auth
-	mux.Handle("/api", &api)
+	api := restapi.API{} //TODO: auth
+	api.InitWithMux(mux)
+	//mux.Handle("/api", &api)
 
-	files := http.FileServer(http.Dir("../flow-build"))
+	//route by restapi-init
+
+	staticDir := exeutil.GetCFG("staticDir", ".")
+	files := http.FileServer(http.Dir(staticDir /*dev: "../flow-build"*/))
 	mux.Handle("/", files) //http.StripPrefix("/static/", files)
 
 	server := &http.Server{
 		Addr:    "0.0.0.0:" + port,
 		Handler: mux,
 	}
+
+	exeutil.Loginf("starting on port:" + port + " with staticDir:'" + staticDir + "'")
 	server.ListenAndServe()
 }

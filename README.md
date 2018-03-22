@@ -30,4 +30,4 @@ go get github.com/cznic/ql              //needs cgo indirectly
 go get github.com/boltdb/bolt/          //key-value db
 
 ##### TODO:
-open browser, cfg, log, exe icon, auth, db interface, check port accessibility
+open browser, exe icon, auth, db interface, check port accessibility

@@ -24,7 +24,18 @@ func init() {
 
 }
 
+//InitWithMux init
+func (h *API) InitWithMux(mux *http.ServeMux) {
+
+	apiConfig := APICONFIG{}
+	apiConfig.InitWithMux(mux)
+
+	mux.Handle("/api", h)
+}
+
 func (h *API) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "application/json")
 
 	//api := new(Api)
 	api := API{Time: time.Now(), Servers: []Server{}, RequestURL: r.URL.Path[1:]}
