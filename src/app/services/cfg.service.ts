@@ -1,14 +1,34 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 import { Network, DataSet, Node, Edge, IdType } from 'vis';
 import * as vis from 'vis';
 
 @Injectable()
 export class CfgService
 {
-  constructor()
+  constructor(protected http:Http)
   {
 
   }
+
+
+  //ATTENTION: IE11 & iOS-SAFARI & ANDROID4-BROWSER DO NOT SUPPORT ASYNC-AWAIT
+  //ATTENTION: ASYNC-AWAIT NEEDS "target": "es6" SET IN TSCONFIG.JSON
+  //TODO: reimplement the old way
+  public async getCFG(cfgEntryName:string) : Promise<string>
+  {
+    try
+    {
+      const response = await this.http.get("api/config?name="+cfgEntryName).toPromise();
+      let data = await response.json();
+      return data[cfgEntryName];
+    }
+    catch(e)
+    {
+      console.log(e); 
+    }
+  }
+
   public getNetworkCfg(supplierNetwork:boolean) : vis.Options
   {
     var options:vis.Options = {

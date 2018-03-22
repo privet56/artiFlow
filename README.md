@@ -3,9 +3,8 @@
 ![flow](https://raw.githubusercontent.com/privet56/artiFlow/master/flow.gif)
 
 ## TODO:
-    popup & links
-    right side with custom html
-    pdf generation per side
+    client: query cfg+data and set labels, footer, header, pdf generation per side, right side with custom html, popup & links on network nodes
+    server: implement tests with http requests, auth, db interface, check port accessibility    
 
 ## Test:
     Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
@@ -29,7 +28,3 @@
 
     ICO:
     go get github.com/akavel/rsrc
-
-##### TODO:
-    client: query cfg+data and set labels, footer, header
-    server: implement tests with http requests, auth, db interface, check port accessibility
