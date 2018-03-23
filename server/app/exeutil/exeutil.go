@@ -115,6 +115,8 @@ func GetCFG(cfgEntryName string, defaultCfgEntryValue string) (cfgEntryValue str
 
 	cfgEntryValue = defaultCfgEntryValue
 
+	//TODO: reread only if file changed!
+
 	file, err := ioutil.ReadFile(getCFGFN(getExeFNWithoutExt()))
 	if err != nil {
 		log.Fatalln("GetCFG(1)", err)

@@ -3,8 +3,10 @@
 ![flow](https://raw.githubusercontent.com/privet56/artiFlow/master/flow.gif)
 
 ## TODO:
-    client: query cfg+data and set labels, footer, header, pdf generation per side, right side with custom html, popup & links on network nodes
-    server: implement tests with http requests, auth, db interface, check port accessibility    
+    client: query cfg+data and set labels, footer, header, pdf generation per side, right side with custom html(http://visjs.org/examples/network/nodeStyles/HTMLInNodes.html), popup & links on network nodes
+        check https://swimlane.github.io/ngx-graph/ for small network graphs
+    server: implement tests with http requests, auth, db interface, check port accessibility, speedup with goroutines, check cfg timestamp before reread
+    common: use SWAGGER to generate the go & ts interface between client & server
 
 ## Test:
     Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).

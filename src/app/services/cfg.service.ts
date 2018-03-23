@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Network, DataSet, Node, Edge, IdType } from 'vis';
 import * as vis from 'vis';
+import { reject } from 'q';
 
 @Injectable()
 export class CfgService
@@ -11,8 +12,31 @@ export class CfgService
 
   }
 
+  public getCFG(cfgEntryName:string) : Promise<string>
+  {
 
-  //ATTENTION: IE11 & iOS-SAFARI & ANDROID4-BROWSER DO NOT SUPPORT ASYNC-AWAIT
+    //TODO: finish implementation & its call!
+
+    return this.http.get("api/config?name="+cfgEntryName).toPromise()
+      .then(res => {
+          return res.json();
+      },
+        err => {
+          console.log("getcfg err(1):"+err);
+          reject(err);
+        }
+      )
+      .then(resjson =>
+      {
+        return resjson["value"];
+      })
+      .catch(err => {
+        console.log("getcfg err(2):"+err);
+        reject(err);
+      });
+  }
+
+  /*ATTENTION: IE11 & iOS-SAFARI & ANDROID4-BROWSER DO NOT SUPPORT ASYNC-AWAIT
   //ATTENTION: ASYNC-AWAIT NEEDS "target": "es6" SET IN TSCONFIG.JSON
   //TODO: reimplement the old way
   public async getCFG(cfgEntryName:string) : Promise<string>
@@ -28,6 +52,16 @@ export class CfgService
       console.log(e); 
     }
   }
+  /* usage:
+  ngAfterViewInit()
+  {
+    this.loadFooter();
+  }
+  async loadFooter()
+  {
+    this.footer = await this.cfgService.getCFG("footer");
+  }
+  */
 
   public getNetworkCfg(supplierNetwork:boolean) : vis.Options
   {

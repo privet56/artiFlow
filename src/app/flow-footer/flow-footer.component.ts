@@ -27,6 +27,15 @@ export class FlowFooterComponent implements OnInit, AfterViewInit
   }
   async loadFooter()
   {
-    this.footer = await this.cfgService.getCFG("footer");
-  }  
+    //es6:
+    //this.footer = await this.cfgService.getCFG("footer");
+
+    //TODO: finish service call!
+    this.cfgService.getCFG("footer").then(footer => {
+      console.log("RETURNED:"+footer);
+      this.footer = footer;
+    }).catch(err => {
+      console.log("catched:"+err);
+    })
+  }
 }
