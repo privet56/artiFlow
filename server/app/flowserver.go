@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"./exeutil"
@@ -50,5 +51,14 @@ func main() {
 
 	exeutil.Loginf("starting on port:" + port + " with staticDir:'" + staticDir + "'")
 	exeutil.OpenBrowser("http://localhost:" + port + "/")
-	server.ListenAndServe()
+
+////alternative 1: start and block:
+	//server.ListenAndServe()
+////alternative 2: start with go routine:
+	httpErrChan := make(chan error)
+	go func() { httpErrChan <- server.ListenAndServe() }()
+	select {
+	case err := <-httpErrChan:
+		log.Fatal("HTTP Error: ", err)
+	}
 }

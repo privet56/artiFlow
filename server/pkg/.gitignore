@@ -1,4 +1,5 @@
 /bin
+/pkg
 /src
 *.res
 *.syso
