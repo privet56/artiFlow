@@ -1,4 +1,6 @@
 {
 	"footer":"myfooter",
-	"header":"myheader"
+	"header":"myheader",
+	"footer":"my footer!",
+	"value":"my value"
 }

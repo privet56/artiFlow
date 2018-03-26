@@ -5,7 +5,10 @@
 ## TODO:
     client: query cfg+data and set labels, footer, header, pdf generation per side, right side with custom html(http://visjs.org/examples/network/nodeStyles/HTMLInNodes.html), popup & links on network nodes
         check https://swimlane.github.io/ngx-graph/ for small network graphs
-    server: implement tests with http requests, auth, db interface, check port accessibility, speedup with goroutines, check cfg timestamp before reread
+    server: implement tests with http requests, auth, db interface, check port accessibility, speedup with (anon) goroutines, check cfg timestamp before reread
+        dependency management: godep
+        routes: gorilla & its subrouter
+
     common: use SWAGGER to generate the go & ts interface between client & server
 
 ## Test:
@@ -27,6 +30,11 @@
     go get github.com/mattn/go-sqlite3      //needs cgo
     go get github.com/cznic/ql              //needs cgo indirectly
     go get github.com/boltdb/bolt/          //key-value db
-
     ICO:
     go get github.com/akavel/rsrc
+    DEPENDENCY MANAGEMENT:
+    go get github.com/tools/godep           //ATTENTION: works only with go standard directory structure within GOPATH
+
+## Go WebServer dependencies:
+
+![flow.go.webserver.dependencies.png](https://raw.githubusercontent.com/privet56/artiFlow/master/flow.go.webserver.dependencies.png)

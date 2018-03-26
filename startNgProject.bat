@@ -5,6 +5,8 @@ set "PATH=%~dp0..\devenv\go;%~dp0..\devenv\go\bin;%PATH%"
 set GOPATH=%~dp0./server/pkg
 set GOROOT=%~dp0../devenv/go
 
+set "PATH=%GOPATH%\bin;%PATH%"
+
 set APPDATA=%~dp0../devenv/MsVSCode
 set USERPROFILE=%~dp0../devenv/MsVSCode
 

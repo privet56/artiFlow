@@ -25,17 +25,29 @@ export class FlowFooterComponent implements OnInit, AfterViewInit
   {
     this.loadFooter();
   }
-  async loadFooter()
+  /*async */loadFooter()
   {
-    //es6:
+
+//version 1: es6 + async:
     //this.footer = await this.cfgService.getCFG("footer");
 
-    //TODO: finish service call!
+/*version 2: promise:
     this.cfgService.getCFG("footer").then(footer => {
       console.log("RETURNED:"+footer);
       this.footer = footer;
+    },
+    err => {
+      console.log("RETURNED-REJECTED:"+err);
     }).catch(err => {
       console.log("catched:"+err);
-    })
+    });*/
+
+//version 3: observable:
+    this.cfgService.getCFG("footer").subscribe((footer:string)=> {
+      this.footer = footer;
+    },
+    err => {
+      console.log("flow-footer REJECTED:"+err);
+    });
   }
 }

@@ -3,32 +3,54 @@ import { Http } from '@angular/http';
 import { Network, DataSet, Node, Edge, IdType } from 'vis';
 import * as vis from 'vis';
 import { reject } from 'q';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 @Injectable()
 export class CfgService
 {
+  //protected static readonly URL_API_CONFIG = "assets/config.json";
+  protected static readonly URL_API_CONFIG = "api/config";
+
   constructor(protected http:Http)
   {
 
   }
 
+  public getCFG(cfgEntryName:string) : Observable<string>
+  {
+    return this.http.get(CfgService.URL_API_CONFIG+"?name="+cfgEntryName)
+      .map((response)     => response.json())
+      .map((responsejson) => responsejson["value"])
+      .catch((e) => {
+        return Observable.throw(
+          new Error(`${ e.status } ${ e.statusText }`)
+        );
+    });
+  }
+/* with promises (error handling incomplete)
   public getCFG(cfgEntryName:string) : Promise<string>
   {
 
     //TODO: finish implementation & its call!
 
-    return this.http.get("api/config?name="+cfgEntryName).toPromise()
+    return this.http.get(CfgService.URL_API_CONFIG+"?name="+cfgEntryName).toPromise()
       .then(res => {
           return res.json();
       },
         err => {
-          console.log("getcfg err(1):"+err);
+          console.log("getcfg err(0):"+err);
           reject(err);
         }
       )
       .then(resjson =>
       {
+        console.log("getcfg inf: then-2");
         return resjson["value"];
+      },
+      err => {
+        console.log("getcfg err(1):"+err);
+        reject(err);
       })
       .catch(err => {
         console.log("getcfg err(2):"+err);
