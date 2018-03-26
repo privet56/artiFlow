@@ -13,6 +13,15 @@ import (
 	"strings"
 )
 
+const (
+	//INF constant
+	INF = "INF "
+	//WRN constant
+	WRN = "WRN "
+	//ERR constant
+	ERR = "ERR "
+)
+
 //PATHS struct
 type PATHS struct {
 	ExeAbsFN string `json:"ExeAbsFN"`
@@ -83,21 +92,21 @@ func writelog(s string, prefix string) (err error) {
 //Logerr lib function logs error
 func Logerr(s string) {
 
-	writelog(s, "ERR ")
+	writelog(s, ERR)
 	return
 }
 
 //Logwrn lib function logs warning
 func Logwrn(s string) {
 
-	writelog(s, "WRN ")
+	writelog(s, WRN)
 	return
 }
 
 //Loginf lib function logs info
 func Loginf(s string) {
 
-	writelog(s, "INF ")
+	writelog(s, INF)
 	return
 }
 
@@ -112,6 +121,11 @@ func GetCFGint(cfgEntryName string, defaultValue int) (cfgEntryValue int) {
 
 //GetCFG lib function
 func GetCFG(cfgEntryName string, defaultCfgEntryValue string) (cfgEntryValue string) {
+
+	cfgEntryValue = os.Getenv(cfgEntryName)
+	if cfgEntryValue != "" {
+		return cfgEntryValue
+	}
 
 	cfgEntryValue = defaultCfgEntryValue
 
