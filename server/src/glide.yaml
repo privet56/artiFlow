@@ -1,0 +1,13 @@
+package: .
+import:
+- package: github.com/kr/fs
+- package: github.com/kr/pretty
+- package: github.com/pmezard/go-difflib
+  version: ^1.0.0
+  subpackages:
+  - difflib
+- package: golang.org/x/tools
+  subpackages:
+  - go/vcs
+- package: github.com/akavel/rsrc
+  version: ^2.0.0

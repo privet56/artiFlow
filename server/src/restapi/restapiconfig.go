@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"../exeutil"
+	"exeutil"
 )
 
 func init() {

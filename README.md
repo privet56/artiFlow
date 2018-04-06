@@ -21,8 +21,8 @@
     ./node_modules/.bin/ng build --prod --target=production --environment=prod --sourcemap=false --base-href= hashlocation true
 
 ### Go WebServer (serves static files and REST API:
-    //rem go build .\server\app\flowserver.go   //does not use .syso
-    cd server\app
+    //rem go build .\server\src\flowserver.go   //does not use .syso
+    cd server\src
     go build -o ..\..\flowserver.exe
 
 #### Go libs:
@@ -33,7 +33,12 @@
     ICO:
     go get github.com/akavel/rsrc
     DEPENDENCY MANAGEMENT:
-    go get github.com/tools/godep           //ATTENTION: works only with go standard directory structure within GOPATH
+    go get github.com/tools/godep           //ATTENTION: works mostly only with go standard directory structure within GOPATH
+    DEPENDENCY MANAGEMENT:
+    glide                                   //ATTENTION: on win64, use 0.12.3
+        glide create                        //in server/src
+        glide get github.com/akavel/rsrc
+        glide install
 
 ## Go WebServer dependencies:
 

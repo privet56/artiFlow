@@ -1,0 +1,18 @@
+hash: 9bb80fa31b768b36748069c3e9c382a1b519fb6f796a9bafe9b870266df0dcf0
+updated: 2018-04-06T13:17:24.7063166+02:00
+imports:
+- name: github.com/akavel/rsrc
+  version: a1fbfaf19b9ec69d75039b2a7cb4b048aecefddf
+- name: github.com/kr/fs
+  version: 2788f0dbd16903de03cb8186e5c7d97b69ad387b
+- name: github.com/kr/pretty
+  version: cfb55aafdaf3ec08f0db22699ab822c50091b1c4
+- name: github.com/pmezard/go-difflib
+  version: 792786c7400a136282c1664665ae0a8db921c6c2
+  subpackages:
+  - difflib
+- name: golang.org/x/tools
+  version: ac136b6c2db7c4d43955e4bc7174db36dc0539c0
+  subpackages:
+  - go/vcs
+testImports: []

@@ -2,8 +2,8 @@ set "PATH=%~dp0..\devenv\git;%~dp0..\devenv\git\bin;%PATH%"
 set "PATH=%~dp0..\devenv\nodejs;%~dp0..\devenv\nodejs\node_modules\npm;%PATH%"
 set "PATH=%~dp0..\devenv\go;%~dp0..\devenv\go\bin;%PATH%"
 
-set GOPATH=%~dp0./server/pkg
-set GOROOT=%~dp0../devenv/go
+set GOPATH=%~dp0server
+set GOROOT=%~dp0..\devenv\go
 
 set "PATH=%GOPATH%\bin;%PATH%"
 

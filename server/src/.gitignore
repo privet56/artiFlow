@@ -2,4 +2,5 @@
 /pkg
 /bin
 /github.com
-/windows_amd64
+/golang.org
+/vendor
