@@ -2,6 +2,7 @@ package restapi
 
 import (
 	"encoding/json"
+	"flowrestapitypes"
 	"fmt"
 	"net/http"
 	"time"
@@ -41,9 +42,10 @@ func (h *APICONFIG) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	cfgEntryValue := exeutil.GetCFG(cfgEntryName, "")
 
-	api := APICONFIG{Time: time.Now(), Name: cfgEntryName, Value: cfgEntryValue, RequestURL: r.URL.Path[1:]}
+	//api := APICONFIG{Time: time.Now(), Name: cfgEntryName, Value: cfgEntryValue, RequestURL: r.URL.Path[1:]}
+	configurationEntry := flowrestapitypes.ConfigurationEntry{Time: time.Now(), Name: cfgEntryName, Value: cfgEntryValue, RequestURL: r.URL.Path[1:]}
 
-	jsonStr, err := json.Marshal(api)
+	jsonStr, err := json.Marshal(configurationEntry)
 
 	if err != nil {
 		fmt.Fprintf(w, "error: %v", err) //TODO: better error handling!
