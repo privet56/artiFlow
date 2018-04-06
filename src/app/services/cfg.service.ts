@@ -5,6 +5,7 @@ import * as vis from 'vis';
 import { reject } from 'q';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
+import { Configuration, ConfigurationEntry } from '../model/models';
 
 @Injectable()
 export class CfgService
@@ -19,6 +20,7 @@ export class CfgService
 
   public getCFG(cfgEntryName:string) : Observable<string>
   {
+    //TODO: use swagger generated ConfigurationEntry class to map JSON response
     return this.http.get(CfgService.URL_API_CONFIG+"?name="+cfgEntryName)
       .map((response)     => response.json())
       .map((responsejson) => responsejson["value"])
