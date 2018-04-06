@@ -18,12 +18,10 @@ export class CfgService
 
   }
 
-  public getCFG(cfgEntryName:string) : Observable<string>
+  public getCFG(cfgEntryName:string) : Observable<ConfigurationEntry>
   {
-    //TODO: use swagger generated ConfigurationEntry class to map JSON response
     return this.http.get(CfgService.URL_API_CONFIG+"?name="+cfgEntryName)
       .map((response)     => response.json())
-      .map((responsejson) => responsejson["value"])
       .catch((e) => {
         return Observable.throw(
           new Error(`${ e.status } ${ e.statusText }`)

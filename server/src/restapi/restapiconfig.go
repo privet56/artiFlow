@@ -38,9 +38,15 @@ func (h *APICONFIG) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-
 	cfgEntryValue := exeutil.GetCFG(cfgEntryName, "")
+
+	if cfgEntryValue == "" {
+		w.WriteHeader(404)
+		fmt.Fprintln(w, "value not found")
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
 
 	//api := APICONFIG{Time: time.Now(), Name: cfgEntryName, Value: cfgEntryValue, RequestURL: r.URL.Path[1:]}
 	configurationEntry := flowrestapitypes.ConfigurationEntry{Time: time.Now(), Name: cfgEntryName, Value: cfgEntryValue, RequestURL: r.URL.Path[1:]}

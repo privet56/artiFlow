@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { CfgService } from '../services/cfg.service';
+import { Configuration, ConfigurationEntry } from '../model/models';
 
 @Component({
   selector: 'app-flow-footer',
@@ -43,8 +44,8 @@ export class FlowFooterComponent implements OnInit, AfterViewInit
     });*/
 
 //version 3: observable:
-    this.cfgService.getCFG("footer").subscribe((footer:string)=> {
-      this.footer = footer;
+    this.cfgService.getCFG("footer").subscribe((footer:ConfigurationEntry)=> {
+      this.footer = footer.value;
     },
     err => {
       console.log("flow-footer REJECTED:"+err);
