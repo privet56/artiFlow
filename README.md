@@ -34,7 +34,9 @@
     DEPENDENCY MANAGEMENT:
     glide                                   //ATTENTION: on win64, use 0.12.3
         glide create                        //in server/src
-        glide get github.com/akavel/rsrc
+        -- glide get github.com/akavel/rsrc
+        -- glide get github.com/gorilla/mux
+        -- glide get github.com/urfave/negroni
         glide install
 
 ## Go WebServer dependencies:
