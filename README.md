@@ -61,3 +61,7 @@
 ## REST API Definition with SWAGGER:
 
 ![swagger](https://raw.githubusercontent.com/privet56/artiFlow/master/swagger/swagger.ui.1.png)
+
+## Development Environment with Server (in Go), Client and PDF Generation:
+
+![flow2pdf.png](https://raw.githubusercontent.com/privet56/artiFlow/master/swagger/flow2pdf.png)

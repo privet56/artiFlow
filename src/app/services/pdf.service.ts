@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-let jsPDF = require('jspdf');
 import * as html2canvas from 'html2canvas';
+import * as JSPdf from 'jspdf';
 
 @Injectable()
 export class PdfService
@@ -15,7 +15,7 @@ export class PdfService
   }
 
   //TODO: return a Promise!
-  public generate(ele2pdf:HTMLElement, fn:string="network.pdf") : void
+  public generate(ele2pdf:HTMLElement, fn:string="network.pdf", fitOnOnePage:boolean=true) : void
   {
 
     let me = this;
@@ -23,7 +23,7 @@ export class PdfService
       .then((canvas) => {
         //TODO: check if setTimeout(function()  is needed
         //me.onpdfrendered(canvas, fn);
-        PdfService.onpdfrendered(canvas, fn, me);
+        PdfService.onpdfrendered(canvas, fn, fitOnOnePage, me);
 
       })
       .catch(err => {
@@ -35,7 +35,7 @@ export class PdfService
     //canvas = this.rewidth(canvas, this.paper2use[0] - 40);
 
   }*/
-	protected static onpdfrendered(canvas:HTMLCanvasElement, fn:string, me:PdfService)
+	protected static onpdfrendered(canvas:HTMLCanvasElement, fn:string, fitOnOnePage:boolean, me:PdfService)
 	{
 		console.log('onpdf-step.2 canvas.width:'+canvas.width);
 		//setTimeout for allowing the browser to repaint
@@ -43,7 +43,7 @@ export class PdfService
 		{
       console.log('onpdf-step.3');
       console.log('onpdf-step.3 a:'+me);
-			canvas = me.rewidth(canvas, me.paper2use[0] - 40, me.paper2use[1] - 40);
+			canvas = me.rewidth(canvas, me.paper2use[0] - 40, fitOnOnePage ? me.paper2use[1] - 40 : -1);
 			//canvas.width = paper2use[0];
 			//img.width = paper2use[0];
 			//console.log('onpdf-step.4('+paper2use[0]+'):'+img.length);
@@ -51,13 +51,15 @@ export class PdfService
 			//win.document.write('<img src="'+img+'">');
 			//return;
 			//TODO: make paper2use & resize & split img
-			var doc = new jsPDF(
+			var doc:JSPdf = new JSPdf(
 			{
 				orientation: 'l',
 				unit: 'pt',
 				format: 'a3'
 			});
-			var hmax = me.paper2use[1] - 40;
+      var hmax = me.paper2use[1] - 40;
+      var left = 20 + ((me.paper2use[0] - canvas.width)/3);
+      console.log("paperwidth:"+me.paper2use[0]+" canvasWidth:"+canvas.width+" ==> left:"+left);
 			if(canvas.height > hmax)
 			{
 				var imgs:Array<CanvasRenderingContext2D> = me.splitImg(canvas, hmax);
@@ -66,7 +68,7 @@ export class PdfService
 					if(i > 0)doc.addPage();
 					var w = Math.min(me.paper2use[0] - 40, imgs[i].canvas.width);
 					var h = Math.min(me.paper2use[1] - 40, imgs[i].canvas.height);
-					doc.addImage(imgs[i].canvas.toDataURL("image/png", 1.0), 'PNG', 20, 20);//, w, h);
+					doc.addImage(imgs[i].canvas.toDataURL("image/png", 1.0), 'PNG', left, 20);//, w, h);
 				}
 			}
 			else
@@ -74,7 +76,7 @@ export class PdfService
 				var img = canvas.toDataURL("image/png", 1.0);		//image/jpeg -> black background
 				var w = Math.min(me.paper2use[0] - 40, canvas.width);
 				var h = Math.min(me.paper2use[1] - 40, canvas.height);
-				doc.addImage(img, 'PNG', 20, 20);//, w, h);
+				doc.addImage(img, 'PNG', left, 20);//, w, h);
 			}
 			doc.save(fn);
 			//$("html, body").css("cursor", "default");
@@ -143,7 +145,7 @@ export class PdfService
     var wScale  = maxWidth / width;
     var hScale  = maxHeight / height;
     var scale = hScale < wScale ? hScale : wScale;
-    if(hScale < wScale)
+    if((maxHeight > 1) && (hScale < wScale))
     {
       c.width 	= canvas.width * hScale;
       c.height 	= maxHeight;
