@@ -2,6 +2,21 @@ import { Injectable } from '@angular/core';
 import * as html2canvas from 'html2canvas';
 import * as JSPdf from 'jspdf';
 
+/* SETUP:
+
+install:
+npm i jspdf --save
+npm i html2canvas --save
+npm i @types/jspdf
+npm i @types/html2canvas
+
+angular-cli.json / scripts:
+"../node_modules/jspdf/dist/jspdf.min.js",
+"../node_modules/html2canvas/dist/html2canvas.min.js",
+
+*/
+
+
 @Injectable()
 export class PdfService
 {
@@ -30,11 +45,7 @@ export class PdfService
         alert("error canvas:"+ err);
       });
   }
-  /*public canvas2pdf(canvas:HTMLCanvasElement) : void
-  {
-    //canvas = this.rewidth(canvas, this.paper2use[0] - 40);
-
-  }*/
+  
 	protected static onpdfrendered(canvas:HTMLCanvasElement, fn:string, fitOnOnePage:boolean, me:PdfService)
 	{
 		console.log('onpdf-step.2 canvas.width:'+canvas.width);
