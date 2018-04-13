@@ -23,6 +23,8 @@
       ],
       "scripts": [
         "../node_modules/vis/dist/vis.min.js",
+        "../node_modules/jspdf/dist/jspdf.min.js",
+        "../node_modules/html2canvas/dist/html2canvas.min.js",
         "assets/vis.animateTraffic.js"
       ],
       "environments": {

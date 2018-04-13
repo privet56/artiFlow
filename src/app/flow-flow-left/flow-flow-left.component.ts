@@ -4,6 +4,7 @@ import { Network, DataSet, Node, Edge, IdType } from 'vis';
 import { DataService } from '../services/data.service';
 import { CfgService } from '../services/cfg.service';
 import * as vis from 'vis';
+
 declare var $visNetworkAnimator : any;
 //declare var vis: any;   //this is the greenhorn version :-)
 
@@ -117,17 +118,18 @@ export class FlowFlowLeftComponent implements OnInit, AfterViewInit
   }
   public onMouseover(event:any, over:boolean)
   {
-    console.log("onMouseover:('"+over+"')");
+    //TODO: console.log("onMouseover:('"+over+"')");
+    
     //var properties =  this.network.getEventProperties(event);
     // properties contains things like node id, group, x, y, time, etc.
     //console.log('mouseover properties:', properties);
   }
   public showPopup(params)
   {
-    console.log("showPopup");
+    //TODO: console.log("showPopup");
   }
   public hidePopup(params)
   {
-    console.log("hidePopup");
+    //TODO: console.log("hidePopup");
   }
 }
