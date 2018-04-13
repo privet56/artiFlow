@@ -64,4 +64,4 @@
 
 ## Development Environment with Server (in Go), Client and PDF Generation:
 
-![flow2pdf.png](https://raw.githubusercontent.com/privet56/artiFlow/master/swagger/flow2pdf.png)
+![flow2pdf.png](https://raw.githubusercontent.com/privet56/artiFlow/master/flow2pdf.png)
