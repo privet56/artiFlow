@@ -20,6 +20,8 @@ const (
 	WRN = "WRN "
 	//ERR constant
 	ERR = "ERR "
+	//EXEDIR constant
+	EXEDIR = "%EXEDIR%"
 )
 
 //PATHS struct
@@ -27,6 +29,7 @@ type PATHS struct {
 	ExeAbsFN string `json:"ExeAbsFN"`
 	CfgAbsFN string `json:"CfgAbsFN"`
 	LogAbsFN string `json:"LogAbsFN"`
+	EXEDIR   string `json:"EXEDIR"`
 }
 
 var logger *log.Logger
@@ -36,6 +39,9 @@ func init() {
 
 	ExeAbsFN := getExeFNWithoutExt()
 	paths = &PATHS{ExeAbsFN: ExeAbsFN, CfgAbsFN: getCFGFN(ExeAbsFN), LogAbsFN: getLogFN(ExeAbsFN)}
+
+	sEXEDIR, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	paths.EXEDIR = sEXEDIR
 
 	logFile, err := os.OpenFile(paths.LogAbsFN, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
@@ -119,6 +125,18 @@ func GetCFGint(cfgEntryName string, defaultValue int) (cfgEntryValue int) {
 	return defaultValue
 }
 
+func replacePlaceholders(s string) (sout string) {
+
+	sout = strings.Replace(s, EXEDIR, paths.EXEDIR, -1 /*there is no limit on the number of replacements*/)
+	/*
+		Loginf("s:'" + s + "'")
+		Loginf("EXEDIR:'" + EXEDIR + "'")
+		Loginf("paths.EXEDIR:'" + paths.EXEDIR + "'")
+		Loginf("sout:'" + sout + "'")
+	*/
+	return sout
+}
+
 //GetCFG lib function
 func GetCFG(cfgEntryName string, defaultCfgEntryValue string) (cfgEntryValue string) {
 
@@ -162,7 +180,7 @@ func GetCFG(cfgEntryName string, defaultCfgEntryValue string) (cfgEntryValue str
 	*/
 
 	if cfgEntryValue, ok := objmap[cfgEntryName]; ok {
-		return cfgEntryValue
+		return replacePlaceholders(cfgEntryValue)
 	}
 
 	cfgEntryValue = defaultCfgEntryValue

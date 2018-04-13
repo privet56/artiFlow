@@ -1,13 +1,16 @@
 package restapi
 
 import (
+	"app/flowrestapitypes"
 	"encoding/json"
-	"flowrestapitypes"
 	"fmt"
 	"net/http"
 	"time"
 
-	"exeutil"
+	"app/exeutil"
+
+	"github.com/gorilla/mux"
+	"github.com/unrolled/render"
 )
 
 func init() {
@@ -20,11 +23,19 @@ type APICONFIG struct {
 	RequestURL string    `json:"requestURL"`
 	Name       string    `json:"name"`
 	Value      string    `json:"value"`
+	formatter  *render.Render
+}
+
+//InitWithStdMux init
+func (h *APICONFIG) InitWithStdMux(mux *http.ServeMux) {
+
+	mux.Handle("/api/config", h)
 }
 
 //InitWithMux init
-func (h *APICONFIG) InitWithMux(mux *http.ServeMux) {
+func (h *APICONFIG) InitWithMux(mux *mux.Router, formatter *render.Render) {
 
+	h.formatter = formatter
 	mux.Handle("/api/config", h)
 }
 

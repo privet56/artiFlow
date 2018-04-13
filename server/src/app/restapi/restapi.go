@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"net/http"
 	"time"
+
+	"github.com/gorilla/mux"
+	"github.com/unrolled/render"
 )
 
 //Server struct
@@ -24,11 +27,19 @@ func init() {
 
 }
 
-//InitWithMux init
-func (h *API) InitWithMux(mux *http.ServeMux) {
+//InitWithStdMux init
+func (h *API) InitWithStdMux(mux *http.ServeMux) {
 
 	apiConfig := APICONFIG{}
-	apiConfig.InitWithMux(mux)
+	apiConfig.InitWithStdMux(mux)
+	mux.Handle("/api", h)
+}
+
+//InitWithMux init
+func (h *API) InitWithMux(mux *mux.Router, formatter *render.Render) {
+
+	apiConfig := APICONFIG{}
+	apiConfig.InitWithMux(mux, formatter)
 
 	mux.Handle("/api", h)
 }

@@ -1,0 +1,6 @@
+*.exe
+/pkg
+/bin
+/github.com
+/golang.org
+/vendor
