@@ -6,7 +6,11 @@
     client: query cfg+data and set labels, footer, header, pdf generation per side, right side with custom html(http://visjs.org/examples/network/nodeStyles/HTMLInNodes.html), popup & links on network nodes
         check https://swimlane.github.io/ngx-graph/ for small network graphs
     server: implement tests with http requests, auth, db interface, check port accessibility, check cfg timestamp before reread
-        routes: gorilla & its subrouter
+        routes: use gorilla subrouter
+    Go server improvements:
+        Use github/mapstructure to read arbitrary json into map!
+        Better error handling: formatter.JSON(...http.StatesInternalServerError...
+        Chain auth with Negroni.New(... & negroni.Wrap
 
 ## Test:
     Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
