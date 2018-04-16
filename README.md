@@ -5,6 +5,7 @@
 ## TODO:
     client: query cfg+data and set labels, footer, header, pdf generation per side, right side with custom html(http://visjs.org/examples/network/nodeStyles/HTMLInNodes.html), popup & links on network nodes
         check https://swimlane.github.io/ngx-graph/ for small network graphs
+        check if http://sigmajs.org/ or https://gojs.net/(not free!) do a better network vizualization!
     server: implement tests with http requests, auth, db interface, check port accessibility, check cfg timestamp before reread
         routes: use gorilla subrouter
     Go server improvements:
