@@ -58,7 +58,8 @@
 
 ![flow.go.webserver.dependencies.png](https://raw.githubusercontent.com/privet56/artiFlow/master/flow.go.webserver.dependencies.png)
 
-## REST API Definition with SWAGGER:
+## [OpenAPI](https://www.openapis.org/) REST API Definition with SWAGGER
+:
 
 ![swagger](https://raw.githubusercontent.com/privet56/artiFlow/master/swagger/swagger.ui.1.png)
 
