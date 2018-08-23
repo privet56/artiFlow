@@ -29,8 +29,8 @@ export class XlsxService
     let worksheet = workbook.addWorksheet('Flow Data');
     let titleRow = worksheet.addRow(["Flow Data"]);
     titleRow.font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
-    // Blank Row
-    worksheet.addRow([]);
+    
+    worksheet.addRow([]);// Blank Row
 
     { //pic into excel
       let logo = workbook.addImage({
@@ -43,7 +43,15 @@ export class XlsxService
     //Add row with current date
     let subTitleRow = worksheet.addRow(['Flow Data Export Date : ' + this.datePipe.transform(new Date(), 'medium')]);
 
-    //TODO: add real flow data!
+
+    /* //TODO: use template!
+    workbook.xlsx.readFile('./template.xlsx')
+      .then(()=>{
+      let sh=workbook.getWorksheet(1)
+    */
+   
+    worksheet.addRow([]);// Blank Row
+
     for(let i:number=0;i<data.nodes.length;i++)
     {
       let dataAsObject:vis.Node = data.nodes[i];
