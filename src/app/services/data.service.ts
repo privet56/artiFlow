@@ -14,7 +14,7 @@ export class DataService
   {
     let DIR:string = "assets/";
     let nodes:Node[] = [
-      {id: 1,  shape: 'circularImage', label: "Developer" , image: DIR + 'dev3.gif', group:'myGroup', fixed: true, color:"green" },
+      {id: 1,  shape: 'circularImage', label: "Developer" , image: DIR + 'dev3.gif', group:'myGroup', fixed: true, color:"aee0a8" },
       {id: 2,  shape: 'circularImage', label: "SVN Server", image: DIR + 'svn2.png', group:'myGroup'},
       {id: 3,  shape: 'circularImage', label: "Jenkins"   , image: DIR + 'jenkins1.gif', group:'myGroup'},
       {id: 4,  shape: 'circularImage', label: "Wildfly"   , image: DIR + 'wildfly1.png', group:'myGroup'},

@@ -74,3 +74,10 @@
     npm install --save file-saver
     npm install --save @types/file-saver
 
+    TODO:
+    - fill prepared excel template from server
+        - insert formula
+        - insert 
+    - test download with different browser (-verions), especially IE's
+
+![flow2xlsx.png](https://raw.githubusercontent.com/privet56/artiFlow/master/flow2xlsx.png)

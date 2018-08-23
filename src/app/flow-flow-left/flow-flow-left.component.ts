@@ -31,7 +31,7 @@ export class FlowFlowLeftComponent implements OnInit, AfterViewInit
   {
     let container           = this.vlph1network.nativeElement;
     let options:vis.Options = this.cfgService.getNetworkCfg(true);
-    let data:vis.Data       = this.dataService.getNetworkData(true);    
+    let data:vis.Data       = this.dataService.getNetworkData(true);
     this.network            = new vis.Network(container, data, options);
 
     //container.addEventListener('mouseover', this.onMouseover);
