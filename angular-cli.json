@@ -25,6 +25,8 @@
         "../node_modules/vis/dist/vis.min.js",
         "../node_modules/jspdf/dist/jspdf.min.js",
         "../node_modules/html2canvas/dist/html2canvas.min.js",
+        "../node_modules/exceljs/dist/es5/exceljs.browser.js",
+        "../node_modules/file-saver/FileSaver.min.js",
         "assets/vis.animateTraffic.js"
       ],
       "environments": {

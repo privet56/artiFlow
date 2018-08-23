@@ -12,7 +12,10 @@ import { FlowFlowRightComponent } from './flow-flow-right/flow-flow-right.compon
 import { DataService } from './services/data.service';
 import { CfgService } from './services/cfg.service';
 import { PdfService } from './services/pdf.service';
+import { XlsxService } from './services/xlsx.service';
 import { PdfgeneratorComponent } from './controls/pdfgenerator/pdfgenerator.component';
+
+import { DatePipe } from '../../node_modules/@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,14 +24,14 @@ import { PdfgeneratorComponent } from './controls/pdfgenerator/pdfgenerator.comp
     FlowFooterComponent,
     FlowFlowLeftComponent,
     FlowFlowRightComponent,
-    PdfgeneratorComponent
+    PdfgeneratorComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [DataService, CfgService, PdfService],
+  providers: [DataService, CfgService, PdfService, XlsxService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

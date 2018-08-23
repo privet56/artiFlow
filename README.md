@@ -67,3 +67,10 @@
 ## Development Environment with Server (in Go), Client and PDF Generation:
 
 ![flow2pdf.png](https://raw.githubusercontent.com/privet56/artiFlow/master/flow2pdf.png)
+
+## Excel Generation in the browser
+    npm install --save exceljs
+    npm install --save @types/exceljs
+    npm install --save file-saver
+    npm install --save @types/file-saver
+
