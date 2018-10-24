@@ -81,3 +81,55 @@
     - test download with different browser (-verions), especially IE's
 
 ![flow2xlsx.png](https://raw.githubusercontent.com/privet56/artiFlow/master/flow2xlsx.png)
+
+## [Rx](http://reactivex.io/) Cheatsheet
+
+    subscribe callback functions:
+        onNext(value)
+        onError(errorObject)
+        onCompleted()
+
+
+    Obervable/Observer:
+        Subject
+            Basic Obervable & Observer
+        BehaviorSubect
+            Holds & sends *last* event to new subscribers
+        RelaySubject
+            Holds & sends *all* sent events to new subscribers
+
+
+    Use *Subject in *Service:
+        private subject = new Subject<Message>();
+        reportMessage(msg: Message) {
+            this.subject.next(msg);
+        }
+        get messages(): Observable<Message> {
+            return this.subject;
+        }
+        //use *Service in *Component:
+        messageService.messages.subscribe(m => this.lastMessage = m);
+
+
+    Manually created Subject in providers:
+        export const MY_STATE = new InjectionToken("my_state");
+        providers: [{ provide: MY_STATE, useValue: new BehaviorSubject<MyState>() }]
+        //inject with
+        @Inject(MY_STATE) private observer: Observer<MyState>
+        @Inject(MY_STATE) private stateEvents: Observable<MyState>
+        //use
+        this.observer.next(new MyState());
+
+    Functional API:
+        filter
+        map
+        distinctUntilChanged
+        skipWhile
+        takeWhile
+      Example:
+        stateEvents
+            .pipe(map(state => state.mode == MODES.EDIT ? state.id : -1))
+            .pipe(filter(id => id != 3))
+            .pipe(skipWhile(state => state.mode == MODES.EDIT))
+            .pipe(distinctUntilChanged())
+            .subscribe((id) => { ...
