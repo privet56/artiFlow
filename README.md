@@ -93,7 +93,7 @@
     Obervable/Observer:
         Subject
             Basic Obervable & Observer
-        BehaviorSubect
+        BehaviorSubject
             Holds & sends *last* event to new subscribers
         RelaySubject
             Holds & sends *all* sent events to new subscribers
