@@ -119,6 +119,34 @@
         @Inject(MY_STATE) private stateEvents: Observable<MyState>
         //use
         this.observer.next(new MyState());
+    
+
+    Subjects with HttpClient:
+        getData(): Observable<Product[]> {
+            return this.http.get<Product[]>(this.url);
+        }
+        deleteProduct(id: number): Observable<Product> {
+            return this.http.delete<Product>(`${this.url}/${id}`);
+        }
+        private sendRequest<T>(verb: string, url: string, body?: Product) : Observable<T> {
+            let myHeaders = new HttpHeaders();
+            myHeaders = myHeaders.set("Access-Key", "<secret>");
+            myHeaders = myHeaders.set("Application-Names", ["exampleApp", "exampleApp2"]);
+            return this.http.request<T>(verb, url, {
+                body: body,
+                headers: myHeaders
+            }).pipe(catchError((error: Response) => {
+                    var msg:String = `Network Error: ${error.statusText} (${error.status})`;
+                    this.ngZone.run(() => this.messageService.reportMessage(new Message(msg, true)), 0);
+                    throwError(msg)
+                }));
+        }
+
+
+    Imports to get error handling:
+        import { Observable, throwError } from "rxjs";
+        import { catchError } from "rxjs/operators";
+
 
     Functional API:
         filter
