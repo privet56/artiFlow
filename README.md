@@ -145,7 +145,33 @@
 
     Imports to get error handling:
         import { Observable, throwError } from "rxjs";
-        import { catchError } from "rxjs/operators";
+        import { catchErrorr, delay } from "rxjs/operators";
+
+    As Guard (use as canDeactivate: [UnsavedGuard] in your Routes):
+        canDeactivate(component: FormComponent, route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean
+        {
+            if (component.editing)
+            {
+                if (["name", "category", "price"].some(prop => component.product[prop] != component.originalProduct[prop]))
+                {
+                    let subject = new Subject<boolean>();
+                    let responses: [string, (string) => void][] = [
+                        ["Yes", () => {
+                            subject.next(true);
+                            subject.complete();
+                        }],
+                        ["No", () => {
+                            this.router.navigateByUrl(this.router.url);
+                            subject.next(false);
+                            subject.complete();
+                        }]
+                    ];
+                    this.messages.reportMessage(new Message("Discard Changes?", true, responses));
+                    return subject;
+                }
+            }
+            return true;
+        }
 
 
     Functional API:
@@ -160,4 +186,5 @@
             .pipe(filter(id => id != 3))
             .pipe(skipWhile(state => state.mode == MODES.EDIT))
             .pipe(distinctUntilChanged())
+            .pipe(delay(999))
             .subscribe((id) => { ...
